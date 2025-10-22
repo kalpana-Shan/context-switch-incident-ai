@@ -17,7 +17,7 @@ class SlackManager:
                 {"type": "section", "text": {"type": "mrkdwn", "text": f"*Alert:* {original_alert}\n*Root Cause:* {analysis.root_cause}"}}
             ]
 
-            result = self.composio.execute_tool(
+            result = self.composio.execute_action(
                 "slack_send_message",
                 channel=self.channel,
                 blocks=message_blocks,
