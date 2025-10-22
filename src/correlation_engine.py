@@ -1,21 +1,21 @@
 import os 
 import logging 
 from datetime import datetime, timedelta 
+from typing import Dict 
 from composio import Composio 
 from shared_contract import IncidentAlert, IncidentAnalysis 
 from ai_synthesizer import IncidentSynthesizer 
  
 class ContextCorrelator: 
-    Novel: Correlates data from multiple sources to find incident patterns 
  
     def __init__(self): 
         self.composio = Composio(api_key=os.getenv('COMPOSIO_API_KEY')) 
         self.ai_synthesizer = IncidentSynthesizer() 
         self.logger = logging.getLogger(__name__) 
  
-    def process_incident(self, alert_subject: str, alert_body: str) -
+    def process_incident(self, alert_subject: str, alert_body: str)-> IncidentAnalysis:
         """Main function: Process incident through full pipeline""" 
-        self.logger.info(f"?? Processing incident: {alert_subject}") 
+        self.logger.info(f"Processing incident: {alert_subject}") 
  
         # Use mock data for now (Member B will add real integrations) 
         context = self._get_mock_context(alert_subject) 
@@ -23,10 +23,10 @@ class ContextCorrelator:
         # Get AI analysis 
         analysis = self.ai_synthesizer.analyze_incident(alert_subject, alert_body, context) 
  
-        self.logger.info(f"? Analysis complete. Confidence: {analysis.confidence_score}/10") 
+        self.logger.info(f"Analysis complete. Confidence: {analysis.confidence_score}/10") 
         return analysis 
  
-    def _get_mock_context(self, alert_subject: str) -
+    def _get_mock_context(self, alert_subject: str)-> Dict: 
         """Provide realistic mock context for development""" 
         from shared_contract import MOCK_CONTEXT 
  
@@ -51,7 +51,7 @@ class ContextCorrelator:
  
         return context 
  
-    def _get_real_context(self, alert_subject: str, alert_time: datetime) -
+    def _get_real_context(self, alert_subject: str, alert_time: datetime) -> Dict:
         """Get real context from various sources (to be implemented)""" 
         # This will be enhanced as Member B builds integrations 
         context = { 
