@@ -7,7 +7,7 @@ class IncidentSynthesizer:
     def __init__(self): 
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY")) 
  
-    def analyze_incident(self, alert_subject: str, alert_body: str, context: Dict) -
+    def analyze_incident(self, alert_subject: str, alert_body: str, context: Dict)-> IncidentAnalysis:
         """Main AI analysis function""" 
         print("?? AI analyzing incident with context...") 
  
@@ -28,7 +28,7 @@ class IncidentSynthesizer:
  
         return analysis 
  
-    def _get_ai_analysis(self, subject: str, body: str, context: Dict) -
+    def _get_ai_analysis(self, subject: str, body: str, context: Dict)-> Dict:
         """Get AI analysis using OpenAI""" 
         prompt = self._build_analysis_prompt(subject, body, context) 
  
@@ -47,7 +47,7 @@ class IncidentSynthesizer:
             print(f"? AI analysis failed: {e}") 
             return self._get_fallback_analysis(subject) 
  
-    def _build_analysis_prompt(self, subject: str, body: str, context: Dict) -
+    def _build_analysis_prompt(self, subject: str, body: str, context: Dict)-> str:
         """Build the prompt for AI analysis""" 
 You are an expert incident response analyst. Analyze this incident with the provided context and provide actionable insights. 
  
@@ -70,7 +70,7 @@ Provide your analysis as JSON with this exact structure:
  
 Be concise and actionable. 
  
-    def _calculate_correlation_score(self, context: Dict) -
+    def _calculate_correlation_score(self, context: Dict)-> float:
         """Calculate how well the context correlates with potential causes""" 
         score = 0.0 
  
@@ -84,7 +84,7 @@ Be concise and actionable.
  
         return min(score, 1.0) 
  
-    def _get_fallback_analysis(self, subject: str) -
+    def _get_fallback_analysis(self, subject: str)-> Dict:
         """Fallback analysis if AI fails""" 
         return { 
             "root_cause": "Requires manual investigation - AI analysis unavailable", 
