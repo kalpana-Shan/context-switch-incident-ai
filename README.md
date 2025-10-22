@@ -187,6 +187,6 @@ MIT License - feel free to use this project for your own initiatives!
 
 
 Built with ❤️ by [SignalSleuths] - Privacy-First AI Incident Response
-
+Demo video: https://youtu.be/W8WkCgz9WJ4
 
 
