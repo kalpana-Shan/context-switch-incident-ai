@@ -30,7 +30,6 @@ def main():
         run_interactive_mode(correlator, slack_manager, history_manager) 
  
 def run_demo_mode(correlator, slack_manager, history_manager): 
-    """Run impressive demo scenarios""" 
     demo_scenarios = [ 
         {"subject": "Database latency spike detected", "body": "CPU usage at 95% for 10 minutes"}, 
         {"subject": "API error rate increased dramatically", "body": "5xx errors jumped from 1% to 25%"}, 
@@ -48,11 +47,9 @@ def run_demo_mode(correlator, slack_manager, history_manager):
         print(f"AI Analysis: {analysis.root_cause}") 
         print(f"Confidence: {analysis.confidence_score}/10") 
  
-        # Send to Slack 
         slack_manager.send_incident_alert(analysis, scenario['subject']) 
         print("Sent to Slack") 
  
-        # Log to history 
         history_manager.log_incident(scenario['subject'], analysis) 
         print("Logged to history") 
         print() 
