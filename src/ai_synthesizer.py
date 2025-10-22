@@ -6,7 +6,7 @@ from typing import Dict
 
 class IncidentSynthesizer:
     def __init__(self):
-        self.model = "llama2:7b"  # Use the model you installed
+        self.model = "phi:2.7b"  
         print("🤖 Initializing Ollama AI engine...")
         
     def analyze_incident(self, alert_subject: str, alert_body: str, context: Dict) -> IncidentAnalysis:
